@@ -34,6 +34,7 @@ jobs:
 
     - name: Commit and Push
       run: |
-        git add azure_fleet.csv
-        git commit -m "Azure fleet deployed"
-        git push origin HEAD:main
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git checkout "${GITHUB_REF:11}"
+        git commit -am "Azure fleet deployed"
+        git push origin main
