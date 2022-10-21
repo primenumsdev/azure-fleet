@@ -18,6 +18,9 @@ jobs:
 
     - name: Azure CLI script file
       uses: azure/CLI@v1
+      env:
+        SSH_USER_NAME: ${{ secrets.SSH_USER_NAME }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       with:
         azcliversion: 2.41.0
         inlineScript: |
