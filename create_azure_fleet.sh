@@ -114,7 +114,7 @@ function deploy() {
   echo " "
   echo "VM #$row - Created"
   echo "VM #$row - Public IP address: $public_ip_addr"
-  echo "$region,$name,$size,$max_price,$public_ip_addr" >>$RESULT_FILE_NAME
+  echo "$name,$public_ip_addr" >>$RESULT_FILE_NAME
 }
 
 # Create VMs
