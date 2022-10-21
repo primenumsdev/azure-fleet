@@ -111,6 +111,7 @@ function deploy() {
     --custom-data cloud_init.yml)
   check_error
   public_ip_addr=$(parse_json "$vm_create_result", publicIpAddress)
+  echo " "
   echo "VM #$row - Created"
   echo "VM #$row - Public IP address: $public_ip_addr"
   echo "$region,$name,$size,$max_price,$public_ip_addr" >>$RESULT_FILE_NAME
