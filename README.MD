@@ -5,7 +5,7 @@ Use GitHub actions to automatically batch create Virtual Machines in Azure Cloud
 
 ## How to use it:
 
-1. Create your own private repository using [this repo](https://github.com/primenumsdev/azure-fleet) as template.
+1. Create your own **private** repository using [this repo](https://github.com/primenumsdev/azure-fleet) as template.
 
    Click the "Use this template" button above.
 
