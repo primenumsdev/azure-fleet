@@ -84,15 +84,12 @@ check_error
 echo "Done."
 echo " "
 
-# Create VMs
-row=1
-while IFS="," read -r region name size max_price; do
-  echo "Creating virtual machine #$row"
-  echo "Region: $region"
-  echo "VM name: $name"
-  echo "Size: $size"
-  echo "Max price: $max_price"
-  
+function deploy() {
+  row=$1
+  region=$2
+  name=$3
+  size=$4
+  max_price=$5
   vm_create_result=$(az vm create \
     --resource-group $RESOURCE_GROUP_NAME \
     --location $region \
@@ -114,11 +111,27 @@ while IFS="," read -r region name size max_price; do
     --custom-data cloud_init.yml)
   check_error
   public_ip_addr=$(parse_json "$vm_create_result", publicIpAddress)
-  echo "Public IP address: $public_ip_addr"
-  echo "$region,$name,$size,$max_price,$public_ip_addr" >> $RESULT_FILE_NAME
+  echo "VM #$row - Created"
+  echo "VM #$row - Public IP address: $public_ip_addr"
+  echo "$region,$name,$size,$max_price,$public_ip_addr" >>$RESULT_FILE_NAME
+}
+
+# Create VMs
+row=1
+while IFS="," read -r region name size max_price; do
+  echo "Creating virtual machine #$row"
+  echo "Region: $region"
+  echo "VM name: $name"
+  echo "Size: $size"
+  echo "Max price: $max_price"
+  # runs each deployment in parallel, thus order of csv results does not match input csv
+  deploy $row $region $name $size $max_price &
   echo " "
   ((row++))
 done < <(tail -n +2 $INPUT_FILE_NAME)
+
+# Wait till all processes finish
+wait
 
 echo "Script finished, you can find created servers in '$RESULT_FILE_NAME' file."
 exit 0
