@@ -32,8 +32,14 @@ az resource list --resource-group $RESOURCE_GROUP_NAME -o table
 check_error
 echo " "
 
-az group delete --name $RESOURCE_GROUP_NAME --force-deletion-types Microsoft.Compute/virtualMachines --yes
+resources="$(az resource list --resource-group $RESOURCE_GROUP_NAME | grep id | awk -F \" '{print $4}')"
 check_error
+
+for id in $resources; do
+    az resource delete --resource-group $RESOURCE_GROUP_NAME --ids "$id" --verbose
+    check_error
+done
+
 echo "Script finished."
 
 exit 0
