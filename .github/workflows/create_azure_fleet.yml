@@ -2,6 +2,12 @@ name: create_azure_fleet
 
 on:
   workflow_dispatch:
+    inputs:
+      input_file_name:
+        description: 'Input file name (csv):'
+        required: true
+        default: 'create_azure_fleet.csv'
+        type: string
 
 jobs:
   create_azure_fleet:
