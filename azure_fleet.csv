@@ -1,3 +1,3 @@
 region,name,size,max_price(USD/hour),ip
-eastus,test-vm-1,Standard_F2s_v2,0.013,4.246.175.217
-westeurope,test-vm-2,Standard_F2s_v2,0.012,20.4.71.59
+eastus,test-vm-1,Standard_F2s_v2,0.013,20.127.122.144
+westeurope,test-vm-2,Standard_F2s_v2,0.012,20.160.220.199
