@@ -75,7 +75,7 @@ fi
 echo " "
 # Remove if exists and create a brand new result file
 rm -f $RESULT_FILE_NAME
-echo "region,name,size,max_price(USD/hour),ip" >>$RESULT_FILE_NAME
+echo "vm_name,ip" >>$RESULT_FILE_NAME
 
 echo "Creating resource group: $RESOURCE_GROUP_NAME"
 # Create resource group
