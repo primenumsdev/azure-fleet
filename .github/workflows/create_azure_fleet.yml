@@ -28,9 +28,9 @@ jobs:
           $GITHUB_WORKSPACE/create_azure_fleet.sh
 
     - name: Setup GIT
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
 
     - name: Commit and Push
       run: |
