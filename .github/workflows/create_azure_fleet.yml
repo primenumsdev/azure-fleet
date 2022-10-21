@@ -26,3 +26,14 @@ jobs:
         inlineScript: |
           chmod +x $GITHUB_WORKSPACE/create_azure_fleet.sh
           $GITHUB_WORKSPACE/create_azure_fleet.sh
+
+    - name: Setup GIT
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+    - name: Commit and Push
+      run: |
+        git add azure_fleet.csv
+        git commit -m "Azure fleet deployed"
+        git push
