@@ -36,4 +36,4 @@ jobs:
       run: |
         git add azure_fleet.csv
         git commit -m "Azure fleet deployed"
-        git push
+        git push origin main
